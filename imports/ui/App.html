@@ -2,9 +2,9 @@
 <template name="mainContainer">
   <h1>Todo List</h1>
   <ul>
-    {{> task text="Buy groceries"}}
-    {{> task text="Walk the dog"}}
-    {{> task text="Code review"}}
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
   </ul>
 </template>
 
