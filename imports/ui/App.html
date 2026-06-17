@@ -1,0 +1,13 @@
+<!-- imports/ui/App.html -->
+<template name="mainContainer">
+  <h1>Todo List</h1>
+  <ul>
+    {{> task text="Buy groceries"}}
+    {{> task text="Walk the dog"}}
+    {{> task text="Code review"}}
+  </ul>
+</template>
+
+<template name="task">
+  <li>{{text}}</li>
+</template>
