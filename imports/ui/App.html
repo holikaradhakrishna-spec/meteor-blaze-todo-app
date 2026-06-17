@@ -1,6 +1,12 @@
 <!-- imports/ui/App.html -->
 <template name="mainContainer">
   <h1>Todo List</h1>
+  
+  <form class="task-form">
+    <input type="text" name="text" placeholder="Type a new task" />
+    <button type="submit">Add Task</button>
+  </form>
+
   <ul>
     {{#each tasks}}
       {{> task}}
