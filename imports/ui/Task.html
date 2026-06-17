@@ -1,0 +1,8 @@
+<!-- imports/ui/Task.html -->
+<template name="task">
+  <li class="task-item" data-id="{{_id}}">
+    <input type="checkbox" {{#if isChecked}}checked{{/if}}>
+    <span class="task-text {{#if isChecked}}strike{{/if}}">{{text}}</span>
+    <button class="delete-btn">×</button>
+  </li>
+</template>
