@@ -52,10 +52,9 @@ Template.mainContainer.helpers({
 
 Template.mainContainer.events({
   'submit .task-form'(event) {
-    // Prevent default browser form submit
+    // prevent page reload
     event.preventDefault();
 
-    // Get value from form elements
     const target = event.target;
     const text = target.text.value.trim();
     const category = target.category.value;
@@ -64,10 +63,8 @@ Template.mainContainer.events({
       return;
     }
 
-    // Insert a task via Meteor Method
     Meteor.callAsync('tasks.insert', { text, category });
 
-    // Clear form
     target.text.value = '';
     target.category.value = '';
   },
