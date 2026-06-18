@@ -12,7 +12,8 @@
     "@swc/helpers": "^0.5.17",
     "bcrypt": "^6.0.0",
     "jquery": "^3.7.1",
-    "meteor-node-stubs": "^1.2.12"
+    "meteor-node-stubs": "^1.2.12",
+    "sortablejs": "^1.15.7"
   },
   "devDependencies": {
     "@meteorjs/rspack": "^2.0.1",

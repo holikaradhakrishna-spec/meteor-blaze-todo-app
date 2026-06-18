@@ -5,6 +5,7 @@ import { TasksCollection } from '../api/TasksCollection.js';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { Meteor } from 'meteor/meteor';
+import Sortable from 'sortablejs';
 
 const state = new ReactiveDict();
 
@@ -13,12 +14,30 @@ Template.mainContainer.onCreated(function() {
   state.set('hideCompleted', false);
 });
 
+Template.taskList.onRendered(function() {
+  const list = this.find('.task-list');
+  if (!list) return;
+  Sortable.create(list, {
+    animation: 150,
+    handle: '.task-item',
+    onEnd: function(evt) {
+      const items = list.querySelectorAll('.task-item');
+      items.forEach(function(item, index) {
+        const taskId = item.dataset.id;
+        if (taskId) {
+          Meteor.callAsync('tasks.updateOrder', { taskId, newOrder: index });
+        }
+      });
+    }
+  });
+});
+
 Template.mainContainer.helpers({
   tasks() {
     if (state.get('hideCompleted')) {
-      return TasksCollection.find({ isChecked: { $ne: true } }, { sort: { createdAt: -1 } });
+      return TasksCollection.find({ isChecked: { $ne: true } }, { sort: { order: 1 } });
     }
-    return TasksCollection.find({}, { sort: { createdAt: -1 } });
+    return TasksCollection.find({}, { sort: { order: 1 } });
   },
   hideCompleted() {
     return state.get('hideCompleted');
