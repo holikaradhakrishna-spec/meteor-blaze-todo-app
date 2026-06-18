@@ -40,12 +40,8 @@ Template.mainContainer.events({
       return;
     }
 
-    // Insert a task into the collection
-    TasksCollection.insertAsync({
-      text,
-      createdAt: new Date(), // current time
-      isChecked: false,
-    });
+    // Insert a task via Meteor Method
+    Meteor.call('tasks.insert', { text });
 
     // Clear form
     target.text.value = '';
