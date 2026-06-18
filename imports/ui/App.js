@@ -9,6 +9,7 @@ import { Meteor } from 'meteor/meteor';
 const state = new ReactiveDict();
 
 Template.mainContainer.onCreated(function() {
+  this.subscribe('tasks');
   state.set('hideCompleted', false);
 });
 
@@ -24,6 +25,9 @@ Template.mainContainer.helpers({
   },
   pendingTasksCount() {
     return TasksCollection.find({ isChecked: { $ne: true } }).count();
+  },
+  isLoading() {
+    return !Template.instance().subscriptionsReady();
   },
 });
 
@@ -41,7 +45,7 @@ Template.mainContainer.events({
     }
 
     // Insert a task via Meteor Method
-    Meteor.call('tasks.insert', { text });
+    Meteor.callAsync('tasks.insert', { text });
 
     // Clear form
     target.text.value = '';

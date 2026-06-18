@@ -21,11 +21,15 @@
       <div class="main">
         {{> form }}
 
-        <ul class="task-list">
-          {{#each tasks}}
-            {{> task}}
-          {{/each}}
-        </ul>
+        {{#if isLoading}}
+          <p class="loading">Loading...</p>
+        {{else}}
+          <ul class="task-list">
+            {{#each tasks}}
+              {{> task}}
+            {{/each}}
+          </ul>
+        {{/if}}
       </div>
     </div>
   {{else}}

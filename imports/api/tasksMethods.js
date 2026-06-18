@@ -20,9 +20,11 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
-    const task = await TasksCollection.findOneAsync(taskId);
-    if (!task || task.userId !== this.userId) {
-      throw new Meteor.Error('not-authorized');
+    if (Meteor.isServer) {
+      const task = await TasksCollection.findOneAsync(taskId);
+      if (!task || task.userId !== this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
     }
 
     await TasksCollection.removeAsync(taskId);
@@ -33,9 +35,11 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
-    const task = await TasksCollection.findOneAsync(taskId);
-    if (!task || task.userId !== this.userId) {
-      throw new Meteor.Error('not-authorized');
+    if (Meteor.isServer) {
+      const task = await TasksCollection.findOneAsync(taskId);
+      if (!task || task.userId !== this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
     }
 
     await TasksCollection.updateAsync(taskId, {

@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { TasksCollection } from '../imports/api/TasksCollection.js';
 import '../imports/api/tasksMethods.js';
+import '../imports/api/tasksPublications.js';
 
 const insertTask = async (taskText, userId) => {
   await TasksCollection.insertAsync({

@@ -11,7 +11,7 @@ Template.login.events({
 
     Meteor.loginWithPassword(username, password, function (err) {
       if (err) {
-        alert(err.reason);
+        alert(err.reason || err.message || 'Unknown login error');
       }
     });
   },
