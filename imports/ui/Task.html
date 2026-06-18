@@ -2,7 +2,7 @@
 <template name="task">
   <li class="task-item" data-id="{{_id}}">
     <input type="checkbox" checked="{{isChecked}}">
-    <span class="task-text" style="{{#if isChecked}}text-decoration:line-through;color:#aaa;{{/if}}">{{text}}</span>
+    <span class="task-text {{#if isChecked}}strike{{/if}}">{{text}}</span>
     <button class="delete-btn">×</button>
   </li>
 </template>

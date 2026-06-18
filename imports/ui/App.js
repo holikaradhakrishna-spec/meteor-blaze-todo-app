@@ -1,8 +1,10 @@
 import './App.html';
 import './Task.js';
+import './Login.js';
 import { TasksCollection } from '../api/TasksCollection.js';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Meteor } from 'meteor/meteor';
 
 const state = new ReactiveDict();
 
@@ -50,5 +52,8 @@ Template.mainContainer.events({
   },
   'click .hide-completed'() {
     state.set('hideCompleted', !state.get('hideCompleted'));
+  },
+  'click .logout-btn'() {
+    Meteor.logout();
   },
 });
