@@ -13,3 +13,10 @@ Template.task.events({
     Meteor.callAsync('tasks.remove', { taskId: this._id });
   },
 });
+
+Template.task.helpers({
+  categoryClass() {
+    const map = { Work: 'category-work', Personal: 'category-personal', Urgent: 'category-urgent' };
+    return map[this.category] || '';
+  }
+});

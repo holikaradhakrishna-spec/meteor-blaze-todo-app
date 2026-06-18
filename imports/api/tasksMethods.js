@@ -2,13 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from './TasksCollection.js';
 
 Meteor.methods({
-  async 'tasks.insert'({ text }) {
+  async 'tasks.insert'({ text, category }) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     await TasksCollection.insertAsync({
       text,
+      category,
       isChecked: false,
       createdAt: new Date(),
       userId: this.userId,

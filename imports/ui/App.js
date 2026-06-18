@@ -36,19 +36,21 @@ Template.mainContainer.events({
     // Prevent default browser form submit
     event.preventDefault();
 
-    // Get value from form element
+    // Get value from form elements
     const target = event.target;
     const text = target.text.value.trim();
+    const category = target.category.value;
 
     if (text.length === 0) {
       return;
     }
 
     // Insert a task via Meteor Method
-    Meteor.callAsync('tasks.insert', { text });
+    Meteor.callAsync('tasks.insert', { text, category });
 
     // Clear form
     target.text.value = '';
+    target.category.value = '';
   },
   'click .hide-completed'() {
     state.set('hideCompleted', !state.get('hideCompleted'));

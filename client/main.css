@@ -76,3 +76,9 @@ form.task-form button { padding: 8px 16px; background: #7C3AED; color: white; bo
   font-size: 0.85rem;
   cursor: pointer;
 }
+
+form.task-form select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; margin-left: 8px; background: white; }
+.category-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 8px; }
+.category-work { background: #dbeafe; color: #1d4ed8; }
+.category-personal { background: #dcfce7; color: #166534; }
+.category-urgent { background: #fee2e2; color: #dc2626; }
